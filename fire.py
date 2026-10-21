@@ -74,7 +74,7 @@ def initialize_database():
         conn = mysql.connector.connect(
             host="127.0.0.1",
             user="root",
-            password="root123456"
+            password="root"
         )
         cursor = conn.cursor()
         cursor.execute("CREATE DATABASE IF NOT EXISTS student_db;")
@@ -175,7 +175,7 @@ def open_inventory_window():
 
     issued_book_ids = set()
     try:
-        conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+        conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
         cursor = conn.cursor()
         cursor.execute("SELECT book_id FROM books_issued;")
         rows = cursor.fetchall()
@@ -308,7 +308,7 @@ def open_register_window():
             return
 
         try:
-            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
             cursor = conn.cursor()
             query = "INSERT INTO books_issued (book_id, student_id, student_name, date_of_issue, book_name, fine) VALUES (%s, %s, %s, %s, %s, 0);"
             cursor.execute(query, (int(b_id), s_id, s_name, d_issue, b_name))
@@ -516,7 +516,7 @@ def open_search_window():
             conn = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                password="root123456",
+                password="root",
                 database="student_db"
             )
             cursor = conn.cursor()
@@ -680,7 +680,7 @@ def open_tables_window():
             tree.delete(item)
             
         try:
-            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
             cursor = conn.cursor()
             cursor.execute("SELECT book_id, student_id, student_name, date_of_issue, book_name, fine FROM books_issued;")
             rows = cursor.fetchall()
@@ -747,7 +747,7 @@ def open_tables_window():
             if pwd_entry.get() == "secret123":
                 pass_prompt.destroy()
                 try:
-                    conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+                    conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
                     cursor = conn.cursor()
                     
                     archive_query = """
@@ -972,7 +972,7 @@ def open_update_window():
             return
             
         try:
-            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
             cursor = conn.cursor()
             cursor.execute("SELECT book_name, student_id, student_name, date_of_issue, fine FROM books_issued WHERE book_id = %s;", (int(b_id),))
             record = cursor.fetchone()
@@ -1027,7 +1027,7 @@ def open_update_window():
             return
             
         try:
-            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+            conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
             cursor = conn.cursor()
             query = """
                 UPDATE books_issued 
@@ -1124,7 +1124,7 @@ def open_archive_history_view():
     scroll.pack(side="right", fill="y", padx=(0,20), pady=15)
     
     try:
-        conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root123456", database="student_db")
+        conn = mysql.connector.connect(host="127.0.0.1", user="root", password="root", database="student_db")
         cursor = conn.cursor()
         cursor.execute("SELECT archive_id, book_id, student_id, student_name, date_of_issue, book_name, date_of_return FROM archived_books ORDER BY date_of_return DESC;")
         records = cursor.fetchall()
@@ -1323,7 +1323,7 @@ try:
     conn = mysql.connector.connect(
         host="127.0.0.1", 
         user="root", 
-        password="root123456", 
+        password="root", 
         database="student_db"
     )
     cursor = conn.cursor()
